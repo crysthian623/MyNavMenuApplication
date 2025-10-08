@@ -1,6 +1,5 @@
 package com.example.mynavmenuapplication
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -15,21 +14,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Fragment inicial
+
         replaceFragment(HomeFragment())
 
-        // Listener de navegación
+
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> replaceFragment(HomeFragment())
                 R.id.nav_about -> replaceFragment(AboutFragment())
                 R.id.nav_services -> replaceFragment(ServicesFragment())
+                R.id.nav_contact -> replaceFragment(ContactFragment())
             }
             true
         }
     }
 
     private fun replaceFragment(fragment: Fragment) {
+        // Transaction SIN animación
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
